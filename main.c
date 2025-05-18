@@ -60,16 +60,16 @@ void add(const char *hunt)
    char buff[256];
 
     printf("Treasure ID: ");
-    scanf("%40s",&t.tresureid);
-    *buff="";
+    scanf("%39s",t.tresureid);
+    buff[0] = '\0';
     sprintf(buff, "utilizatorul a introdus tresure id: %s\n",t.tresureid);
     userlog(hunt,buff);
 
 
 
     printf("nume:");
-    scanf("%40s",t.name);
-    *buff="";
+    scanf("%39s",t.name);
+    buff[0] = '\0';
     sprintf(buff, "utilizatorul a introdus numele: %s\n",t.name);
     userlog(hunt,buff);
     int k=0;
@@ -78,14 +78,14 @@ void add(const char *hunt)
         printf("latitudine: ");
         if(scanf("%f",&t.x)<=0)
         {
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus gresit latitudinea\n");
             userlog(hunt,buff);
             printf("Incorrect input\n");
             int c;
             while ((c = getchar()) != '\n' && c != EOF) { }
         } else {
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus latitudinea: %f\n",t.x);
             userlog(hunt,buff);
             k = 1;
@@ -102,14 +102,14 @@ void add(const char *hunt)
         fgets(buffer,100,stdin);
         char *endptr;
         if (strtof(buffer,&endptr)==0) {
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus gresit longitudinea\n");
             userlog(hunt,buff);
             printf("Incorrect input\n");
         }
         else {
             k=1;
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus latitudinea: %f\n",t.y);
             userlog(hunt,buff);
         }
@@ -117,7 +117,7 @@ void add(const char *hunt)
 
     printf("text:");
     fgets(t.text, sizeof(t.text), stdin);
-    *buff="";
+    buff[0] = '\0';
     sprintf(buff, "utilizatorul a introdus textul: %s\n",t.text);
     userlog(hunt,buff);
 
@@ -128,14 +128,14 @@ void add(const char *hunt)
         printf("val:");
         if(scanf("%d",&t.val)<=0) {
             printf("Incorrect input\n");
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus gresit longitudinea\n");
             userlog(hunt,buff);
             int c;
             while ((c = getchar()) != '\n' && c != EOF) { }
         } else {
             k = 1;
-            *buff="";
+            buff[0] = '\0';
             sprintf(buff, "utilizatorul a introdus valoarea: %d\n",t.val);
             userlog(hunt,buff);
 
@@ -161,7 +161,7 @@ void add(const char *hunt)
     }
     else {
         perror("write");
-        *buff="";
+        buff[0] = '\0';
         sprintf(buff, "utilizatorul a introdus o comoara noua\n");
         userlog(hunt,buff);
     }
@@ -224,7 +224,7 @@ void list(const char *hunt)
 
         printf("Comoara %d:\n", ++k);
         printf("  ID: %s\n", t.tresureid);
-        
+
     }
 
     if (bytes_read == -1) {
@@ -343,7 +343,7 @@ void remove_h(const char *hunt )
     else
         printf("comoara .bin sters\n");
 
-    *path="";
+    path[0] = '\0';
     strcpy(path,hunt);
     strcat(path,"/userlog");
 
@@ -391,5 +391,8 @@ int main(int argc,char* argv[]) {
                     {
                         remove_h(argv[2]);
                     }
+
+
     return 0;
 }
+
